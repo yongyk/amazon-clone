@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    /*
+    const response= new XMLHttpRequest();
+    response.addEventListener('load',()=>{
+        console.log(response.response);
+    });
+    response.open('GET','https://supersimplebackend.dev/greeting')
+    response.send();*/
+/*
+    fetch('https://supersimplebackend.dev/greeting').then ((response)=>{
+        return response.text();
+    }).then((data)=>{
+        console.log(data);
+    }).catch((error)=>{
+        console.log('Error:',error);
+    })*/
+   /*
+   async function testing(){
+   const res= await fetch('https://supersimplebackend.dev/greeting');
+   const data=await res.text();
+    console.log(data);
+   }
+testing();*/
+/*
+async function testing(){
+    const res= await fetch('https://supersimplebackend.dev/greeting',{
+        method:'POST',
+        headers:{
+            'Content-Type':'application/json'
+        },
+        body:JSON.stringify({
+            name:'yong'
+            
+        })
+    });
+    const data=await res.text();
+    console.log(data);
+}
+testing();*/
+/*
+  fetch('https://amazon.com').then ((response)=>{
+        return response.text();
+    }).then((data)=>{
+        console.log(data);
+    }).catch((error)=>{
+        console.log('Error:',error);
+    })*/
+  
+    async function testing(){
+    try{
+        const res= await fetch('https://supersimplebackend.dev/greeting',{
+        method:'POST',
+        headers:{
+            'Content-Type':'application/json'
+        },
+        
+       });
+
+    if(res.status >= 400){
+        throw res;
+    }
+    const data=await res.text();
+    console.log(data);
+    } catch(error){
+        if(error.status === 404){
+            const code = await error.json();
+            console.log(code);
+        }else{
+            console.log('network error')
+        }
+    }
+}
+testing();
+
+</script>
+</html>
